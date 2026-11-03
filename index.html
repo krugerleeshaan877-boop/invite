@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kirsten's 21st Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    background: #e5d8c8;
+    font-family: 'Montserrat', sans-serif;
+    color: #493326;
+}
+
+/* OPENING SCREEN */
+
+.opening {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #eee5d9, #cbb69e);
+}
+
+.opening h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 7vw, 48px);
+    letter-spacing: 3px;
+    margin: 20px 0 10px;
+}
+
+.top-label, .bottom-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.subtitle {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+}
+
+/* ENVELOPE */
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    margin-bottom: 40px;
+    perspective: 1000px;
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #493326;
+}
+
+.envelope-paper {
+    position: absolute;
+    width: 85%;
+    height: 90%;
+    top: 5%;
+    left: 7.5%;
+    background: #f7f2e9;
+    z-index: 2;
+    padding: 20px;
+    transition: transform 0.8s ease;
+}
+
+.envelope-paper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 75px;
+}
+
+.envelope-paper p {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: #78583e;
+    clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
+    z-index: 3;
+}
+
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    background: #987657;
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 5;
+}
+
+.wax-seal {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #c2a16e;
+    border: 2px solid #e0c79f;
+    color: #493326;
+    display: grid;
+    place-items: center;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    transition: opacity 0.3s;
+}
+
+/* OPEN BUTTON */
+
+#openButton {
+    background: #493326;
+    color: white;
+    border: none;
+    padding: 16px 35px;
+    letter-spacing: 3px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#openButton:hover {
+    background: #795b40;
+}
+
+/* ENVELOPE ANIMATION */
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+}
+
+.envelope.open .envelope-paper {
+    transform: translateY(-100px);
+}
+
+/* INVITATION */
+
+.invitation {
+    min-height: 100vh;
+    padding: 35px 15px;
+    display: flex;
+    justify-content: center;
+    animation: appear 0.8s ease;
+}
+
+.card {
+    width: 100%;
+    max-width: 570px;
+    background: #f7f2e9;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid #c1a477;
+    box-shadow: 0 15px 40px #49332630;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CARD HEADER */
+
+.gold-line {
+    height: 1px;
+    background: #c1a477;
+    margin: 20px 0;
+}
+
+.intro {
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-top: 25px;
+}
+
+/* BIRTHDAY TITLE */
+
+.number {
+    font-family: 'Playfair Display', serif;
+    font-size: 110px;
+    font-weight: 400;
+    margin: 15px 0 0;
+}
+
+.number sup {
+    font-size: 23px;
+}
+
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    font-weight: 400;
+}
+
+.name {
+    font-size: 18px;
+    letter-spacing: 5px;
+    font-weight: 500;
+    margin: 25px 0;
+}
+
+/* MESSAGE */
+
+.message {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    line-height: 1.9;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+/* EVENT DETAILS */
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    padding: 25px 0;
+    border-top: 1px solid #cdbb9f;
+    border-bottom: 1px solid #cdbb9f;
+    margin: 25px 0;
+}
+
+.details span,
+.venue span,
+.dress span,
+.rsvp span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #987956;
+}
+
+.details h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.divider {
+    width: 1px;
+    background: #cdbb9f;
+}
+
+/* VENUE */
+
+.venue {
+    margin: 30px 0;
+}
+
+.venue h3 {
+    font-family: 'Playfair Display', serif;
+    margin: 12px 0;
+    font-size: 21px;
+}
+
+.venue p {
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+/* DRESS CODE */
+
+.dress {
+    padding: 22px;
+    background: #eae0d2;
+    margin: 25px 0;
+}
+
+.dress h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin: 10px;
+    font-weight: 400;
+}
+
+.dress p {
+    font-size: 10px;
+}
+
+/* RSVP */
+
+.rsvp {
+    margin: 30px 0;
+}
+
+.rsvp p {
+    font-size: 11px;
+    margin: 12px 0;
+}
+
+.rsvp a {
+    display: block;
+    color: #493326;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 12px;
+}
+
+.rsvp a:hover {
+    color: #a17d53;
+}
+
+/* FOOTER */
+
+.footer h2 {
+    font-family: 'Playfair Display', serif;
+    margin: 25px 0 12px;
+}
+
+.footer p {
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 600px) {
+
+    .envelope {
+        width: 260px;
+        height: 175px;
+    }
+
+    .card {
+        padding: 28px 17px;
+    }
+
+    .number {
+        font-size: 85px;
+    }
+
+    .card h2 {
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+
+    .name {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .details h3 {
+        font-size: 12px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- OPENING SCREEN -->
+
+<section class="opening" id="opening">
+
+    <p class="top-label">A SPECIAL OCCASION</p>
+
+    <h1>KIRSTEN ANDRIES</h1>
+
+    <p class="subtitle">21 YEARS OF GREATNESS</p>
+
+    <div class="envelope" id="envelope">
+
+        <div class="envelope-back"></div>
+
+        <div class="envelope-paper">
+            <p>YOU'RE INVITED</p>
+            <h2>21</h2>
+            <p>KIRSTEN ANDRIES</p>
+           
+        </div>
+
+        <div class="envelope-front"></div>
+
+        <div class="envelope-flap"></div>
+
+        <div class="wax-seal">21</div>
+
+    </div>
+
+    <button type="button" id="openButton">
+        OPEN INVITATION
+    </button>
+
+    <p class="bottom-label" style="margin-top:35px;">
+        A CELEBRATION TO REMEMBER
+    </p>
+
+</section>
+
+
+<!-- INVITATION PAGE -->
+
+<section class="invitation" id="invitation" hidden>
+
+    <div class="card">
+
+        <p>EST. 2005 <span style="margin-left:30px;">TWENTY ONE</span></p>
+
+        <div class="gold-line"></div>
+
+        <p class="intro">THE PLEASURE OF YOUR COMPANY IS REQUESTED</p>
+
+        <div class="number">21<sup>ST</sup></div>
+
+        <h2>BIRTHDAY CELEBRATION</h2>
+
+        <div class="gold-line" style="width:65px;margin:20px auto;"></div>
+
+        <p class="name">KIRSTEN ANDRIES</p>
+        <img src="kirsten.png" alt="Kirsten Andries">
+
+        <p class="message">
+            Twenty-one years of Grace, Growth, & Gratitude.
+
+            Join me as I celebrate this milestone birthday and step
+            into a new chapter. Your presence will be highly appreciated!
+
+            
+        </p>
+
+        <!-- DATE AND TIME -->
+
+        <div class="details">
+
+            <div>
+                <span>DATE</span>
+                <h3>05 DECEMBER</h3>
+            </div>
+
+            <div class="divider"></div>
+
+            <div>
+                <span>TIME</span>
+                <h3>18:00</h3>
+            </div>
+
+        </div>
+
+        <!-- VENUE -->
+
+        <div class="venue">
+
+            <span>CELEBRATION VENUE</span>
+
+            <h3>ELIZABETH CONRADIE</h3>
+
+            <p>LAPA AREA</p>
+
+        </div>
+
+        <!-- DRESS CODE -->
+
+        <div class="dress">
+            </h1>
+
+            <span>DRESS CODE</span>
+            <h3> Fifty Shades of Brown</h3>
+
+            <h3>SEMI-CASUAL</h3>
+
+            <p>Dress sharp. Celebrate in style.</p>
+
+        </div>
+
+        <!-- RSVP -->
+
+        <div class="rsvp">
+
+            <span>PLEASE RSVP</span>
+
+            <p>Kindly confirm your attendance</p>
+
+            <a href="tel:0677363600"> Natasha Barker : 067 736 3600</a>
+
+            <a href="tel:0739179270"> Kirsten Andries : 073 917 9270</a>
+
+        </div>
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <div class="gold-line"></div>
+
+            <h2>LET'S CELEBRATE.</h2>
+
+            <p>GOOD PEOPLE. GOOD VIBES. GREAT MEMORIES.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const openButton = document.getElementById("openButton");
+    const opening = document.getElementById("opening");
+    const invitation = document.getElementById("invitation");
+    const envelope = document.getElementById("envelope");
+
+    openButton.addEventListener("click", function() {
+
+        envelope.classList.add("open");
+
+        openButton.disabled = true;
+        openButton.textContent = "OPENING...";
+
+        setTimeout(function() {
+
+            opening.hidden = true;
+            invitation.hidden = false;
+
+            window.scrollTo(0, 0);
+
+        }, 900);
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

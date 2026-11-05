@@ -3,571 +3,1029 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kirsten's 21st Birthday</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-body {
-    background: #e5d8c8;
-    font-family: 'Montserrat', sans-serif;
-    color: #493326;
-}
-
-/* OPENING SCREEN */
-
-.opening {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #eee5d9, #cbb69e);
-}
-
-.opening h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(30px, 7vw, 48px);
-    letter-spacing: 3px;
-    margin: 20px 0 10px;
-}
-
-.top-label, .bottom-label {
-    font-size: 10px;
-    letter-spacing: 4px;
-}
-
-.subtitle {
-    font-size: 10px;
-    letter-spacing: 4px;
-    margin-bottom: 50px;
-}
-
-/* ENVELOPE */
-
-.envelope {
-    width: 300px;
-    height: 200px;
-    position: relative;
-    margin-bottom: 40px;
-    perspective: 1000px;
-}
-
-.envelope-back {
-    position: absolute;
-    inset: 0;
-    background: #493326;
-}
-
-.envelope-paper {
-    position: absolute;
-    width: 85%;
-    height: 90%;
-    top: 5%;
-    left: 7.5%;
-    background: #f7f2e9;
-    z-index: 2;
-    padding: 20px;
-    transition: transform 0.8s ease;
-}
-
-.envelope-paper h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 75px;
-}
-
-.envelope-paper p {
-    font-size: 10px;
-    letter-spacing: 3px;
-}
-
-.envelope-front {
-    position: absolute;
-    inset: 0;
-    background: #78583e;
-    clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
-    z-index: 3;
-}
-
-.envelope-flap {
-    position: absolute;
-    inset: 0;
-    background: #987657;
-    clip-path: polygon(0 0, 100% 0, 50% 55%);
-    transform-origin: top;
-    transition: transform 0.8s ease;
-    z-index: 5;
-}
-
-.wax-seal {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #c2a16e;
-    border: 2px solid #e0c79f;
-    color: #493326;
-    display: grid;
-    place-items: center;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 6;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    transition: opacity 0.3s;
-}
-
-/* OPEN BUTTON */
-
-#openButton {
-    background: #493326;
-    color: white;
-    border: none;
-    padding: 16px 35px;
-    letter-spacing: 3px;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-#openButton:hover {
-    background: #795b40;
-}
-
-/* ENVELOPE ANIMATION */
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
-}
-
-.envelope.open .wax-seal {
-    opacity: 0;
-}
-
-.envelope.open .envelope-paper {
-    transform: translateY(-100px);
-}
-
-/* INVITATION */
-
-.invitation {
-    min-height: 100vh;
-    padding: 35px 15px;
-    display: flex;
-    justify-content: center;
-    animation: appear 0.8s ease;
-}
-
-.card {
-    width: 100%;
-    max-width: 570px;
-    background: #f7f2e9;
-    padding: 40px;
-    text-align: center;
-    border: 1px solid #c1a477;
-    box-shadow: 0 15px 40px #49332630;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* CARD HEADER */
-
-.gold-line {
-    height: 1px;
-    background: #c1a477;
-    margin: 20px 0;
-}
-
-.intro {
-    font-size: 9px;
-    letter-spacing: 3px;
-    margin-top: 25px;
-}
-
-/* BIRTHDAY TITLE */
-
-.number {
-    font-family: 'Playfair Display', serif;
-    font-size: 110px;
-    font-weight: 400;
-    margin: 15px 0 0;
-}
-
-.number sup {
-    font-size: 23px;
-}
-
-.card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    letter-spacing: 4px;
-    font-weight: 400;
-}
-
-.name {
-    font-size: 18px;
-    letter-spacing: 5px;
-    font-weight: 500;
-    margin: 25px 0;
-}
-
-/* MESSAGE */
-
-.message {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    line-height: 1.9;
-    margin: 30px auto;
-    max-width: 400px;
-}
-
-/* EVENT DETAILS */
-
-.details {
-    display: flex;
-    justify-content: space-around;
-    padding: 25px 0;
-    border-top: 1px solid #cdbb9f;
-    border-bottom: 1px solid #cdbb9f;
-    margin: 25px 0;
-}
-
-.details span,
-.venue span,
-.dress span,
-.rsvp span {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: #987956;
-}
-
-.details h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.divider {
-    width: 1px;
-    background: #cdbb9f;
-}
-
-/* VENUE */
-
-.venue {
-    margin: 30px 0;
-}
-
-.venue h3 {
-    font-family: 'Playfair Display', serif;
-    margin: 12px 0;
-    font-size: 21px;
-}
-
-.venue p {
-    font-size: 11px;
-    letter-spacing: 3px;
-}
-
-/* DRESS CODE */
-
-.dress {
-    padding: 22px;
-    background: #eae0d2;
-    margin: 25px 0;
-}
-
-.dress h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin: 10px;
-    font-weight: 400;
-}
-
-.dress p {
-    font-size: 10px;
-}
-
-/* RSVP */
-
-.rsvp {
-    margin: 30px 0;
-}
-
-.rsvp p {
-    font-size: 11px;
-    margin: 12px 0;
-}
-
-.rsvp a {
-    display: block;
-    color: #493326;
-    text-decoration: none;
-    font-size: 17px;
-    margin: 12px;
-}
-
-.rsvp a:hover {
-    color: #a17d53;
-}
-
-/* FOOTER */
-
-.footer h2 {
-    font-family: 'Playfair Display', serif;
-    margin: 25px 0 12px;
-}
-
-.footer p {
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-/* MOBILE RESPONSIVENESS */
-
-@media(max-width: 600px) {
-
-    .envelope {
-        width: 260px;
-        height: 175px;
-    }
-
-    .card {
-        padding: 28px 17px;
-    }
-
-    .number {
-        font-size: 85px;
-    }
-
-    .card h2 {
-        font-size: 13px;
-        letter-spacing: 3px;
-    }
-
-    .name {
-        font-size: 14px;
-        letter-spacing: 3px;
-    }
-
-    .details h3 {
-        font-size: 12px;
-    }
-
-    .message {
-        font-size: 14px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#E6DDD1">
+    <meta name="description" content="Join Kirsten Andries as she celebrates her 21st birthday.">
+
+    <title>Kirsten's 21st Birthday</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ==============================
+           GLOBAL STYLES
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #E6DDD1;
+            --cream: #F7F2E9;
+            --dark-brown: #493326;
+            --text-brown: #3C291D;
+            --medium-brown: #78583E;
+            --gold: #C1A477;
+            --light-gold: #DFC59C;
+            --muted: #856849;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-brown);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+        }
+
+        button,
+        a {
+            font: inherit;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+
+        /* ==============================
+           OPENING SCREEN
+        ============================== */
+
+        .opening {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #E8DED0,
+                    #CBB69E
+                );
+        }
+
+        .top-label,
+        .bottom-label {
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: #72553C;
+        }
+
+        .opening h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 6vw, 48px);
+            margin: 18px 0 8px;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        .opening-subtitle {
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 45px;
+        }
+
+
+        /* ==============================
+           ENVELOPE
+        ============================== */
+
+        .envelope {
+            width: min(300px, 85vw);
+            aspect-ratio: 3 / 2;
+            height: auto;
+            position: relative;
+            perspective: 1000px;
+            margin-bottom: 40px;
+        }
+
+        .envelope-back {
+            position: absolute;
+            inset: 0;
+            background: var(--dark-brown);
+            border-radius: 2px;
+        }
+
+        .envelope-paper {
+            position: absolute;
+            background: var(--cream);
+            width: 85%;
+            height: 90%;
+            left: 7.5%;
+            top: 5%;
+            z-index: 2;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+            transition: transform 0.9s ease;
+        }
+
+        .envelope-paper span {
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .envelope-paper h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(55px, 12vw, 75px);
+            font-weight: 400;
+            line-height: 1;
+            margin: 8px 0;
+        }
+
+        .envelope-paper p {
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .envelope-front {
+            position: absolute;
+            inset: 0;
+            background: #78583E;
+
+            clip-path: polygon(
+                0 0,
+                50% 65%,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
+
+            z-index: 3;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            inset: 0;
+            background: #967553;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                50% 55%
+            );
+
+            transform-origin: top;
+            transition: transform 0.8s ease;
+            z-index: 5;
+        }
+
+        .wax-seal {
+            width: 45px;
+            height: 45px;
+
+            background: #BD9A65;
+            color: #352319;
+            border: 2px solid var(--light-gold);
+            border-radius: 50%;
+
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+
+            z-index: 6;
+            transition: opacity 0.3s ease;
+        }
+
+
+        /* ==============================
+           OPEN BUTTON
+        ============================== */
+
+        #openButton {
+            background: var(--dark-brown);
+            color: #F5EEE4;
+
+            padding: 15px 35px;
+            border: 1px solid #B99A73;
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        #openButton:hover {
+            background: #73563D;
+            transform: translateY(-3px);
+        }
+
+        #openButton:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        #openButton:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        .bottom-label {
+            margin-top: 35px;
+        }
+
+
+        /* ==============================
+           ENVELOPE ANIMATION
+        ============================== */
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope.open .wax-seal {
+            opacity: 0;
+        }
+
+        .envelope.open .envelope-paper {
+            transform: translateY(-110px);
+        }
+
+
+        /* ==============================
+           INVITATION SECTION
+        ============================== */
+
+        .invitation {
+            min-height: 100vh;
+            padding: 50px 15px;
+
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .invitation.show {
+            display: flex;
+            animation: fadeIn 1s ease;
+        }
+
+        .invitation-card {
+            width: 100%;
+            max-width: 580px;
+
+            background: var(--cream);
+            padding: 40px;
+
+            text-align: center;
+
+            border: 1px solid #B89A74;
+
+            box-shadow:
+                0 15px 45px rgba(54, 36, 24, 0.2);
+        }
+
+
+        /* ==============================
+           CARD HEADER
+        ============================== */
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--muted);
+        }
+
+        .gold-line {
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        .gold-line.short {
+            width: 65px;
+        }
+
+        .intro {
+            font-size: 9px;
+            letter-spacing: 3px;
+            line-height: 1.8;
+            margin-top: 35px;
+            color: #816447;
+        }
+
+
+        /* ==============================
+           BIRTHDAY TITLE
+        ============================== */
+
+        .invitation-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(75px, 15vw, 110px);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--dark-brown);
+            margin-top: 15px;
+        }
+
+        .invitation-card h1 sup {
+            font-size: 23px;
+            vertical-align: super;
+        }
+
+        .invitation-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 5px;
+            font-size: 16px;
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            margin: 25px 0;
+            color: var(--dark-brown);
+        }
+
+
+        /* ==============================
+           BIRTHDAY PHOTO
+        ============================== */
+
+        .photo-frame {
+            width: 200px;
+            height: 230px;
+
+            margin: 0 auto 15px;
+
+            border: 4px solid var(--gold);
+            padding: 8px;
+
+            background: #E7DDCF;
+            overflow: hidden;
+
+            box-shadow: 0 5px 15px rgba(54, 36, 24, 0.12);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center;
+
+            display: block;
+        }
+
+
+        /* ==============================
+           BIRTHDAY MESSAGE
+        ============================== */
+
+        .message {
+            max-width: 390px;
+            margin: 30px auto;
+
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            line-height: 1.9;
+
+            color: #624B38;
+        }
+
+
+        /* ==============================
+           EVENT DETAILS
+        ============================== */
+
+        .event-information {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px 0;
+
+            border-top: 1px solid #CDBB9F;
+            border-bottom: 1px solid #CDBB9F;
+
+            margin: 30px 0;
+        }
+
+        .event-item {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .event-item span,
+        .venue span,
+        .dress-code span,
+        .rsvp span {
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #987956;
+        }
+
+        .event-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+
+        .vertical-line {
+            width: 1px;
+            height: 50px;
+            background: #CDBB9F;
+            flex-shrink: 0;
+        }
+
+
+        /* ==============================
+           VENUE
+        ============================== */
+
+        .venue {
+            margin: 30px 0;
+        }
+
+        .venue h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 12px 0 5px;
+            letter-spacing: 1px;
+        }
+
+        .venue p {
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .venue h2 {
+            margin-top: 12px;
+            font-size: 15px;
+            letter-spacing: 4px;
+        }
+
+
+        /* ==============================
+           DRESS CODE
+        ============================== */
+
+        .dress-code {
+            background: #EAE0D2;
+            padding: 25px 15px;
+            margin: 30px 0;
+        }
+
+        .dress-code h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin: 10px 0;
+        }
+
+        .dress-code p {
+            font-size: 10px;
+            color: #765A40;
+            line-height: 1.7;
+        }
+
+
+        /* ==============================
+           RSVP
+        ============================== */
+
+        .rsvp {
+            margin: 35px 0;
+        }
+
+        .rsvp > p {
+            font-size: 11px;
+            margin: 12px 0;
+            line-height: 1.7;
+        }
+
+        .rsvp a {
+            display: block;
+
+            color: var(--dark-brown);
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: 500;
+
+            margin: 14px 0;
+            transition: color 0.3s ease;
+        }
+
+        .rsvp a:hover {
+            color: #A17D53;
+        }
+
+        .rsvp a:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        .footer {
+            margin-top: 30px;
+        }
+
+        .footer h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            letter-spacing: 3px;
+            margin: 25px 0 12px;
+        }
+
+        .footer p {
+            font-size: 9px;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+
+        /* ==============================
+           FADE ANIMATION
+        ============================== */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* ==============================
+           TABLET & MOBILE
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            .opening {
+                padding: 25px 15px;
+            }
+
+            .opening h1 {
+                letter-spacing: 2px;
+            }
+
+            .top-label,
+            .bottom-label {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .opening-subtitle {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .envelope {
+                width: min(260px, 82vw);
+            }
+
+            .envelope.open .envelope-paper {
+                transform: translateY(-85px);
+            }
+
+            .invitation {
+                padding: 25px 12px;
+            }
+
+            .invitation-card {
+                padding: 28px 17px;
+            }
+
+            .invitation-card h2 {
+                font-size: 13px;
+                letter-spacing: 3px;
+            }
+
+            .invitation-card h1 sup {
+                font-size: 19px;
+            }
+
+            .name {
+                font-size: 15px;
+                letter-spacing: 4px;
+            }
+
+            .event-item h3 {
+                font-size: 13px;
+            }
+
+            .venue h3 {
+                font-size: 19px;
+            }
+
+            .message {
+                font-size: 14px;
+            }
+
+            .photo-frame {
+                width: 190px;
+                height: 220px;
+            }
+
+            .footer h2 {
+                font-size: 21px;
+            }
+
+        }
+
+
+        /* ==============================
+           SMALL PHONES
+        ============================== */
+
+        @media (max-width: 380px) {
+
+            .card-top {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
+
+            .intro {
+                font-size: 8px;
+                letter-spacing: 2px;
+            }
+
+            .event-information {
+                gap: 8px;
+            }
+
+            .event-item h3 {
+                font-size: 11px;
+            }
+
+            .event-item span {
+                font-size: 8px;
+                letter-spacing: 2px;
+            }
+
+            .photo-frame {
+                width: 175px;
+                height: 205px;
+            }
+
+            .rsvp a {
+                font-size: 14px;
+            }
+
+            .dress-code h3 {
+                font-size: 19px;
+            }
+
+        }
+
+
+        /* ==============================
+           REDUCED MOTION
+        ============================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<!-- OPENING SCREEN -->
+    <!-- ==============================
+         OPENING SCREEN
+    ============================== -->
 
-<section class="opening" id="opening">
+    <section class="opening" id="opening">
 
-    <p class="top-label">A SPECIAL OCCASION</p>
+        <p class="top-label">A SPECIAL OCCASION</p>
 
-    <h1>KIRSTEN ANDRIES</h1>
+        <h1>KIRSTEN ANDRIES</h1>
 
-    <p class="subtitle">21 YEARS OF GREATNESS</p>
+        <p class="opening-subtitle">21 YEARS OF GREATNESS</p>
 
-    <div class="envelope" id="envelope">
 
-        <div class="envelope-back"></div>
+        <!-- ENVELOPE -->
 
-        <div class="envelope-paper">
-            <p>YOU'RE INVITED</p>
-            <h2>21</h2>
-            <p>KIRSTEN ANDRIES</p>
-           
+        <div class="envelope" id="envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="envelope-paper">
+
+                <span>YOU'RE INVITED</span>
+
+                <h2>21</h2>
+
+                <p>KIRSTEN ANDRIES</p>
+
+            </div>
+
+            <div class="envelope-front"></div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="wax-seal">21</div>
+
         </div>
 
-        <div class="envelope-front"></div>
 
-        <div class="envelope-flap"></div>
+        <!-- OPEN BUTTON -->
 
-        <div class="wax-seal">21</div>
+        <button type="button" id="openButton">
 
-    </div>
+            OPEN INVITATION
 
-    <button type="button" id="openButton">
-        OPEN INVITATION
-    </button>
-
-    <p class="bottom-label" style="margin-top:35px;">
-        A CELEBRATION TO REMEMBER
-    </p>
-
-</section>
+        </button>
 
 
-<!-- INVITATION PAGE -->
+        <p class="bottom-label">
 
-<section class="invitation" id="invitation" hidden>
+            A CELEBRATION TO REMEMBER
 
-    <div class="card">
-
-        <p>EST. 2005 <span style="margin-left:30px;">TWENTY ONE</span></p>
-
-        <div class="gold-line"></div>
-
-        <p class="intro">THE PLEASURE OF YOUR COMPANY IS REQUESTED</p>
-
-        <div class="number">21<sup>ST</sup></div>
-
-        <h2>BIRTHDAY CELEBRATION</h2>
-
-        <div class="gold-line" style="width:65px;margin:20px auto;"></div>
-
-        <p class="name">KIRSTEN ANDRIES</p>
-        <img src="kirsten.png" alt="Kirsten Andries">
-
-        <p class="message">
-            Twenty-one years of Grace, Growth, & Gratitude.
-
-            Join me as I celebrate this milestone birthday and step
-            into a new chapter. Your presence will be highly appreciated!
-
-            
         </p>
 
-        <!-- DATE AND TIME -->
+    </section>
 
-        <div class="details">
 
-            <div>
-                <span>DATE</span>
-                <h3>05 DECEMBER</h3>
+
+    <!-- ==============================
+         INVITATION CARD
+    ============================== -->
+
+    <section class="invitation" id="invitation" hidden>
+
+        <div class="invitation-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="card-top">
+
+                <span>EST. 2005</span>
+
+                <span>TWENTY ONE</span>
+
             </div>
-
-            <div class="divider"></div>
-
-            <div>
-                <span>TIME</span>
-                <h3>18:00</h3>
-            </div>
-
-        </div>
-
-        <!-- VENUE -->
-
-        <div class="venue">
-
-            <span>CELEBRATION VENUE</span>
-
-            <h3>ELIZABETH CONRADIE</h3>
-
-            <p>LAPA AREA</p>
-
-        </div>
-
-        <!-- DRESS CODE -->
-
-        <div class="dress">
-            </h1>
-
-            <span>DRESS CODE</span>
-            <h3> Fifty Shades of Brown</h3>
-
-            <h3>SEMI-CASUAL</h3>
-
-            <p>Dress sharp. Celebrate in style.</p>
-
-        </div>
-
-        <!-- RSVP -->
-
-        <div class="rsvp">
-
-            <span>PLEASE RSVP</span>
-
-            <p>Kindly confirm your attendance</p>
-
-            <a href="tel:0677363600"> Natasha Barker : 067 736 3600</a>
-
-            <a href="tel:0739179270"> Kirsten Andries : 073 917 9270</a>
-
-        </div>
-
-        <!-- FOOTER -->
-
-        <div class="footer">
 
             <div class="gold-line"></div>
 
-            <h2>LET'S CELEBRATE.</h2>
 
-            <p>GOOD PEOPLE. GOOD VIBES. GREAT MEMORIES.</p>
+            <!-- BIRTHDAY TITLE -->
+
+            <p class="intro">
+
+                THE PLEASURE OF YOUR COMPANY IS REQUESTED
+
+            </p>
+
+            <h1>21<sup>ST</sup></h1>
+
+            <h2>BIRTHDAY CELEBRATION</h2>
+
+            <div class="gold-line short"></div>
+
+
+            <!-- NAME -->
+
+            <p class="name">
+
+                KIRSTEN ANDRIES
+
+            </p>
+
+
+            <!-- BIRTHDAY PHOTO -->
+
+            <div class="photo-frame">
+
+                <img
+                    src="kirsten.png"
+                    alt="Kirsten Andries"
+                >
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <p class="message">
+
+                Twenty-one years of Grace, Growth, & Gratitude.
+
+                Join me as I celebrate this milestone birthday and step
+                into a new chapter. Your presence will be highly appreciated!
+
+            </p>
+
+
+            <!-- EVENT DETAILS -->
+
+            <div class="event-information">
+
+                <div class="event-item">
+
+                    <span>DATE</span>
+
+                    <h3>05 DECEMBER</h3>
+
+                </div>
+
+
+                <div class="vertical-line"></div>
+
+
+                <div class="event-item">
+
+                    <span>TIME</span>
+
+                    <h3>18:00</h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- VENUE -->
+
+            <div class="venue">
+
+                <span>CELEBRATION VENUE</span>
+
+                <h3>ELIZABETH CONRADIE</h3>
+
+                <p>LAPA AREA</p>
+
+                <h2>BOB</h2>
+
+            </div>
+
+
+            <!-- DRESS CODE -->
+
+            <div class="dress-code">
+
+                <span>DRESS CODE</span>
+
+                <h3>Fifty Shades of Brown</h3>
+
+                <h3>SEMI-CASUAL</h3>
+
+                <p>Dress sharp. Celebrate in style.</p>
+
+            </div>
+
+
+            <!-- RSVP -->
+
+            <div class="rsvp">
+
+                <span>PLEASE RSVP</span>
+
+                <p>Kindly confirm your attendance</p>
+
+                <a href="tel:0677363600">
+
+                    Natasha Barker : 067 736 3600
+
+                </a>
+
+                <a href="tel:0739179270">
+
+                    Kirsten Andries : 073 917 9270
+
+                </a>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                <div class="gold-line"></div>
+
+                <h2>LET'S CELEBRATE.</h2>
+
+                <p>GOOD PEOPLE. GOOD VIBES. GREAT MEMORIES.</p>
+
+            </div>
+
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- JAVASCRIPT -->
 
-<script>
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
 
-document.addEventListener("DOMContentLoaded", function() {
+    <script>
 
-    const openButton = document.getElementById("openButton");
-    const opening = document.getElementById("opening");
-    const invitation = document.getElementById("invitation");
-    const envelope = document.getElementById("envelope");
+        document.addEventListener("DOMContentLoaded", function () {
 
-    openButton.addEventListener("click", function() {
+            const openButton = document.getElementById("openButton");
 
-        envelope.classList.add("open");
+            const opening = document.getElementById("opening");
 
-        openButton.disabled = true;
-        openButton.textContent = "OPENING...";
+            const invitation = document.getElementById("invitation");
 
-        setTimeout(function() {
+            const envelope = document.getElementById("envelope");
 
-            opening.hidden = true;
-            invitation.hidden = false;
 
-            window.scrollTo(0, 0);
+            // Prevent multiple clicks during animation
 
-        }, 900);
+            openButton.addEventListener("click", function () {
 
-    });
+                envelope.classList.add("open");
 
-});
+                openButton.disabled = true;
 
-</script>
+                openButton.textContent = "OPENING...";
+
+
+                // Wait for envelope animation
+
+                setTimeout(function () {
+
+                    opening.hidden = true;
+
+                    invitation.hidden = false;
+
+                    invitation.classList.add("show");
+
+                    // Return user to the top of the invitation
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "instant"
+                    });
+
+                }, 900);
+
+            });
+
+        });
+
+    </script>
 
 </body>
+
 </html>
